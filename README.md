@@ -62,3 +62,7 @@ message. You can click on "Composers" and add a composer and some works they may
 
 The SQLite database is stored in a file named ``demodata.db`` - you can reset the system
 to its original state by copying ``demodata-blank.db`` over it.
+
+Note that the code actually uses 3 separate database context - one for the Identity database (ApplicationDbContext), one for Event Logging (CoreDemoEvtContext) and 
+one for the actual "database" (CoreDemoDbContext): if you want to reconstruct the database for another provider you can use the existing migrations,
+but you'll have to update the database separately for each context.
