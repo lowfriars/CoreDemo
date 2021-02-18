@@ -1,0 +1,47 @@
+﻿@using CoreDemo.Logging
+@model IEnumerable<DatabaseLog>
+<h3>Event Log</h3>
+
+<table class="table">
+    <tr>
+        <th>Date</th>
+        <th>Event</th>
+        <th>Level</th>
+        <th>User</th>
+        <th>Target User</th>
+        <th>URL</th>
+        <th>Message</th>
+</tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetUsername)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+                <br />
+                @Html.DisplayFor(modelItem => item.Exception)
+            </td>
+        </tr>
+    }
+</table>
+
+@{
+}
