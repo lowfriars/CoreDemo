@@ -11,6 +11,10 @@ using CoreDemo.Models;
 
 namespace CoreDemo
 {
+    /// <summary>
+    /// This is a simple helper to seed the Identity database with an initial user and the user roles
+    /// </summary>
+
     public class Bootstrap
     {
         private readonly AppSettings _settings;
@@ -32,6 +36,8 @@ namespace CoreDemo
             _initialPassword = initialPassword;
             _initialUser = initialUser;
             _additionalRoles = additionalRoles;
+
+            // We use this third-party helper as this function needs to run synchronously and the user/role manager is asynchronous.
 
             AsyncContext.Run (SeedUsersAndRolesAsync);
         }
