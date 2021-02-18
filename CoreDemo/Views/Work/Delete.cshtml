@@ -1,0 +1,24 @@
+﻿@model Works
+<h3>Confirm Deletion of Work for <small class="text-muted">@ViewBag.ComposerName</small></h3>
+
+<form asp-controller="Work" asp-action="Delete" asp-route-composerName="@ViewBag.ComposerName">
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <p class="form-control-static">@Html.DisplayFor(model => model.Title)</p>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <p class="form-control-static">@Html.DisplayFor(model => model.Description)</p>
+    </div>
+    <div class="form-group">
+        <label asp-for="YearOfComposition" class="control-label"></label>
+        <p class="form-control-static">@Html.DisplayFor(model => model.YearOfComposition)</p>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-default" asp-controller="Composer" asp-action="Detail" asp-route-id="@Model.Id">Cancel</a>
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="ComposerId" value="Model.ComposerId" />
+    </div>
+</form>
+

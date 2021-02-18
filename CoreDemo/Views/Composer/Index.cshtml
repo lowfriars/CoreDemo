@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Composers>
+
+<h3>Composers</h3>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Year of Birth</th>
+        <th>Year of Death</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><a asp-controller="Composer" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearOfDeath)
+            </td>
+            <td>
+                <a class="btn btn-danger" asp-controller="Composer" asp-action="Delete" asp-route-id="Model.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="3"></td>
+        <td>
+            <a class="btn btn-primary" asp-controller="Composer" asp-action="Create">New</a>
+        </td>
+    </tr>
+</table>
+
+

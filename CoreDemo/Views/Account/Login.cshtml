@@ -1,0 +1,25 @@
+﻿@using System.Collections.Generic
+@using Microsoft.AspNetCore.Http
+@model LoginViewModel
+
+<h3>Login To Your Account.</h3>
+ <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+     <div asp-validation-summary="All" class="text-danger"></div>
+     <div class="form-group">
+        <label asp-for="UserName" class="control-label"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+     </div>
+     <div class="form-group">
+         <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Log in</button>
+    </div>
+</form>
+ 
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

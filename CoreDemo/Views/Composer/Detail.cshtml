@@ -1,0 +1,44 @@
+﻿@model Composers
+<h3>Composer <small class="text-muted">@Model.Name</small></h3>
+<div>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Year of Birth</th>
+                <th>Year of Death</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                    <a asp-controller="Composer" asp-action="Change" asp-route-id="@Model.Id">@Html.DisplayFor(model => model.Name)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.YearOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.YearOfDeath)
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-controller="Composer" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"><h3>Compositions</h3></td>
+            </tr>
+            @{
+                var vdd = new ViewDataDictionary(ViewData);
+                vdd.Add("ComposerId", Model.Id);
+                vdd.Add("ComposerName", Model.Name);
+
+            }
+            <partial name="WorkPartial", for="Works" view-data="vdd"/>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a class="btn btn-default" asp-controller="Composer" asp-action="Index">Go Back</a>
+                </td>
+            </tr>
+            </table>
+</div>

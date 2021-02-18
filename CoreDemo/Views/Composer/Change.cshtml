@@ -1,0 +1,30 @@
+﻿@model Composers
+
+<h3>Amend Composer <small class="text-muted">@Model.Name</small></h3>
+
+<form asp-controller="Composer" asp-action="Change" asp-route-id="@Model.Id" method="post" role="form">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="YearOfBirth" class="control-label"></label>
+        <input asp-for="YearOfBirth" class="form-control" />
+        <span asp-validation-for="YearOfBirth" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="YearOfDeath" class="control-label"></label>
+        <input asp-for="YearOfDeath" class="form-control" />
+        <span asp-validation-for="YearOfDeath" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Change" class="btn btn-primary" />
+        <a class="btn btn-default" asp-controller="Composer" asp-action="Detail" asp-route-id="@Model.Id">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

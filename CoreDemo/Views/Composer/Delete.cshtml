@@ -1,0 +1,33 @@
+﻿@model Composers
+<h3>Confirm Deletion of Composer <small class="text-muted">@Model.Name</small></h3>
+
+<form asp-controller="Composer" asp-action="Delete" method="post" asp-route-id="@Model.Id" role="form">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <p class="form-control-static">@Html.DisplayFor(model => model.Name)</p>
+    </div>
+    <div class="form-group">
+        <label asp-for="YearOfBirth" class="control-label"></label>
+        <p class="form-control-static">@Html.DisplayFor(model => model.YearOfBirth)</p>
+    </div>
+    <div class="form-group">
+        <label asp-for="YearOfDeath" class="control-label"></label>
+        <p class="form-control-static">@Html.DisplayFor(model => model.YearOfDeath)</p>
+    </div>
+    @if (ViewBag.WorkCount > 0)
+    {
+        @if (ViewBag.WorkCount == 1)
+        {
+            <div class="form-group"><p class="text-danger">Deleting this composer will result in one work by this composer being deleted too.</p></div>
+        }
+        else
+        {
+            <div class="form-group"><p class="text-danger">Deleting this composer will result in @ViewBag.WorkCount works by this composer being deleted too.</p></div>
+        }
+    }
+
+    <div class="form-group">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-default" asp-controller="Composer" asp-action="Detail" asp-route-id="@Model.Id">Cancel</a>
+    </div>
+</form>

@@ -1,0 +1,15 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+<div>
+    <img style="padding-bottom: 10px; padding-top: 10px;" src="~/images/Morph-mid.gif" />
+    @if (!SignInManager.IsSignedIn(User))
+    {
+    <p>
+        Please log in to the application using the link at the top right.
+    </p>
+    }
+</div>
+
+@if (ViewData["Error"].ToString() != "")
+{
+        <span class="alert-danger">@ViewData["Error"]</span>
+}

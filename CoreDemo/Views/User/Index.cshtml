@@ -1,0 +1,91 @@
+﻿@model List<CoreDemo.Models.ApplicationUser>
+
+<h2>System Users</h2>
+<p class="text-success">@ViewData["StatusMessage"]</p>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>User Name</th>
+            <th>Last Login</th>
+            <th>Last Pwd Change</th>
+            <th>Failed Logins</th>
+            <th>Last Lockout</th>
+            <th>Role</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @if (item.LastLogin == DateTime.MinValue)
+                    {
+                        <i>Never</i>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.LastLogin)
+                    }
+                </td>
+                <td>
+                    @if (item.LastPasswordChange == DateTime.MinValue)
+                    {
+                        <i>Never</i>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.LastPasswordChange)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoginFailures)
+                </td>
+                <td>
+                    @if ((null == item.LockoutEnd) || (item.LockoutEnd == DateTime.MinValue))
+                    {
+                        <i>N/A</i>
+                    }
+                    else
+                    {
+                        @if (item.LockoutEnd < DateTime.Now)
+                        {
+                            @Html.DisplayFor(modelItem => item.LockoutEnd)
+                        }
+                        else
+                        {
+                            <span class="text-danger">@Html.DisplayFor(modelItem => item.LockoutEnd)</span>
+                        }
+                    }
+                </td>
+                <td>
+                    <table>
+                        @foreach (var r in item.RoleNames)
+                        {
+                            <tr><td>@r</td></tr>
+                        }
+                    </table>
+                </td>
+                <td>
+                    @if (item.Status != ApplicationUser.UserStatusType.Active)
+                    {
+                        <a class="btn btn-danger" asp-area="" asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                    </td>
+            </tr>
+        }
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <a class="btn btn-default" asp-area="" asp-controller="User" asp-action="Create">New User</a>
+        </td>
+    </tr>
+    </table>
+</div>

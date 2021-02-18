@@ -1,0 +1,24 @@
+﻿@model CoreDemo.Models.ApplicationUser
+
+<h3>Confirm Deletion of User <small class="text-muted">@Model.UserName</small></h3>
+<form asp-controller="User" asp-action="Delete" method="post" asp-route-id="@Model.Id">
+    <div class="form-group">
+        <label asp-for="UserName" class="control-label"></label>
+        <p class="form-control-static">@Html.DisplayFor(model => model.UserName)</p>
+    </div>
+    <div class="form-group">
+        <label asp-for="RoleNames" class="control-label"></label>
+        <p class="form-control-static">
+                <table>
+                    @foreach (var r in Model.RoleNames)
+                    {
+                        <tr><td>@r</td></tr>
+                    }
+                </table>
+            </p>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-danger" value="Delete" />
+        <a class="btn btn-default" asp-controller="User" asp-action="">Cancel</a>
+    </div>
+</form>
